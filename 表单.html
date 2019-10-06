@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="表单.css">
+</head>
+<body>
+<form method="POST">
+    <table>
+        <tr>
+            <th>姓名和联系方式</th>
+            <th colspan="2"></th>
+        </tr>
+        <tr>
+            <th align="right">真实姓名：</th>
+            <th class="center" align="left"><input type="text" id="name"><nobr>*</nobr></th>
+            <th><input type="radio" name="beantype" value="man">男
+                <input type="radio" name="beantype" value="women">女</th>
+        </tr>
+        <tr>
+            <th align="right">电子邮箱：</th>
+            <th class="center" align="left"><input type="email" id="mail"><nobr>*</nobr></th>
+            <th><p align="left">非常重要!</p><p>这是本工作室与您联系的首选方式噢。请填写真实。</p></th>
+        </tr>
+        <tr>
+            <th align="right">联系地址：</th>
+            <th class="center" align="left"><input type="text" id="address"><nobr>*</nobr></th>
+            <th align="left">地址为必须填写项</th>
+        </tr>
+        <tr>
+            <th align="right">所实习部门：</th>
+            <th align="left" id="choise">
+                <select name="section">
+                    <option value="research">研发</option>
+                    <option value="sale">销售</option>
+                    <option value="servey">调查</option>
+                </select>
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th align="right">实习岗位：</th>
+            <th class="center" align="left"><input type="text" id="job"></th>
+            <th align="left">研发部岗位：前端/后端/运维</th>
+        </tr>
+        <tr>
+            <th align="right">手机号码：</th>
+            <th class="center" align="left"><input type="tel" id="tel"><nobr>*</nobr></th>
+            <th rowspan="3"></th>
+        </tr>
+        <tr>
+            <th align="right">邮箱：</th>
+            <th class="center" align="left"><input type="email" id="mail"><nobr>*</nobr></th>
+        </tr>
+        <tr>
+            <th align="right">性别取向：</th>
+            <th class="center" align="left"><input type="text" id="gender"></th>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

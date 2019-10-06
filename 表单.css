@@ -1,0 +1,13 @@
+table{
+    margin: auto;
+    border: thin solid #000000;
+    border-collapse: collapse;
+}
+td,th{
+    border: thin solid #000000;
+    padding: 8px;
+}
+.center{
+    width: 260px;
+    height: 20px;
+}
