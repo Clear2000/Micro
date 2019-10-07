@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style> .error {color: #FF0000;} 
+    .btn2{
+    background:#99ff00;
+    position:absolute;
+    left:100px;
+    top:120px;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="表单.css">
+</head>
+<body>
+    <?php
+        $nameErr = $emailErr = $genderErr = $addressErr = $jobErr = $telErr ="";
+        $name = $email = $address = $gender = "";
+        $job = $number = $mail = "";
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (empty($_POST["name"])){
+                $nameErr = "姓名是必填的";    
+                echo $name;
+            }
+            else{
+                $name = test_input($_POST["name"]);
+                
+                if (!preg_match("/^[a-zA-Z_]+$/",$name)){
+                    $nameErr = "只允许字母和空格";
+                 }
+                else{
+                    $fp = fopen('talk.txt','w+');
+                    fwrite($fp,$_POST["name"]."\r\n");
+                    fclose($fp);
+                    exit("提交成功");
+                }
+            }
+            if (empty($_POST["gender"])){
+                $genderErr = "性别是必选的";
+            }
+            else{
+                $gender = test_input($_POST["gender"]);
+            }
+            if (empty($_POST["email"])){
+                $emailErr = "电子邮箱是必填的";
+            }
+            else{
+                $email = test_input($_POST["email"]);
+                if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
+                    $emailErr = "无效的email格式";
+                }
+            }
+            if (empty($_POST["address"])) {
+                $addressErr = "地址是必填的";
+            } else {
+                $address = test_input($_POST["address"]);
+            }
+            if (empty($_POST["job"])) {
+                $jobErr = "实习岗位是必填的";
+            } else {
+                $job = test_input($_POST["job"]);
+            }
+            if (empty($_POST["tel"])) {
+                $telErr = "电话是必填的";
+            } else{
+                $tel = test_input($_POST["tel"]);
+            }
+            if (empty($_POST["mail"])) {
+                $mail = "";
+            } else{
+                $mail = test_input($_POST["mail"]);
+            }
+        }
+        function test_input($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+    ?>
+        <form method="post" action="<?php echo 
+        htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+    <table>
+        <tr>
+            <th>姓名和联系方式</th>
+            <th colspan="2"></th>
+        </tr>
+        <tr>
+            <th align="right">真实姓名：</th>
+            <th class="center" align="left"><input type="text" id="name"><nobr>*</nobr><span class="error"><?php echo $nameErr;?></span></th>
+            <th><input type="radio" name="beantype" value="man">男
+                <input type="radio" name="beantype" value="women">女</th>
+        </tr>
+        <tr>
+            <th align="right">电子邮箱：</th>
+            <th class="center" align="left"><input type="email" id="email"><nobr>*</nobr><span class="error"><?php echo $emailErr;?></th>
+            <th><p align="left">非常重要!这是本工作室与您联系的首选方式噢。请填写真实。</p></th>
+             
+            
+        </tr>
+        <tr>
+            <th align="right">联系地址：</th>
+            <th class="center" align="left"><input type="text" id="address"><nobr>*</nobr><span class="error"><?php echo $addressErr;?></span></th>
+            <th align="left">地址为必须填写项</th>
+        </tr>
+        <tr>
+            <th align="right">所实习部门：</th>
+            <th align="left" id="choise"><nobr>*</nobr>
+                <select name="section">
+                    <option value="research">研发</option>
+                    <option value="sale">销售</option>
+                    <option value="servey">调查</option>
+                </select>
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th align="right">实习岗位：</th>
+            <th class="center" align="left"><input type="text" id="job"><nobr>*</nobr><span class="error"><?php echo $jobErr;?></span></th>
+            <th align="left">研发部岗位：前端/后端/运维</th>
+            
+        </tr>
+        <tr>
+            <th align="right">手机号码：</th>
+            <th class="center" align="left"><input type="tel" id="tel"><nobr>*</nobr><span class="error"><?php echo $telErr;?></span></th>
+            <th rowspan="3"></th>
+        </tr>
+        <tr>
+            <th align="right">邮箱：</th>
+            <th class="center" align="left"><input type="email" id="mail"></th>
+        </tr>
+        <tr>
+            <th align="right">性别取向：</th>
+            <th class="center" align="left"><input type="text" id="gender"></th>
+        </tr>
+        <tr>
+        <input type = "submit";>
+            
+        </tr>
+    </table>   
+</form>
+</body>
+</html>
+
